@@ -1,3 +1,8 @@
+# github
 requests
 art
 termcolor
+
+# google
+google-api-python-client
+google-auth-oauthlib

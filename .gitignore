@@ -160,3 +160,7 @@ cython_debug/
 #.idea/
 
 SourceSageAssets
+
+credentials.json
+application_default_credentials.json
+key.json
