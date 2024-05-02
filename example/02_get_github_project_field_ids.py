@@ -114,7 +114,7 @@ if "errors" in response_fields.json():
 # レスポンスからフィールド情報を取得
 fields = response_fields.json()["data"]["node"]["fields"]["nodes"]
 
-pprint.pprint(fields)
+# pprint.pprint(fields)
 print("---------------------------")
 print(colored("Fields:", "magenta"))
 for field in fields:
