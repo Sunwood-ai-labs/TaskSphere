@@ -104,7 +104,7 @@ def get_project_items(project_id):
     print("---------------------------")
     print(colored("Items:", "magenta"))
     for item in items:
-        print(colored(f"Item ID: {item['id']}", "cyan"))
+        print(colored(f"Item ID: {item['id'][:6]}_XXXXXXXXXXXX", "cyan"))
 
         content = item["content"]
         if "title" in content:
