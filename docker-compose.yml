@@ -6,7 +6,6 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./:/app
-      - ./application_default_credentials.json:/application_default_credentials.json
     env_file:
       - .env
     tty: true
