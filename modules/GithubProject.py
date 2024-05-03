@@ -57,6 +57,7 @@ class GithubProject:
 
         return project_id
 
+
     def get_project_items(self, project_id):
         query_items = """
         query {
@@ -65,6 +66,34 @@ class GithubProject:
               items(first: 20) {
                 nodes {
                   id
+                  fieldValues(first: 8) {
+                    nodes {
+                      ... on ProjectV2ItemFieldTextValue {
+                        text
+                        field {
+                          ... on ProjectV2FieldCommon {
+                            name
+                          }
+                        }
+                      }
+                      ... on ProjectV2ItemFieldDateValue {
+                        date
+                        field {
+                          ... on ProjectV2FieldCommon {
+                            name
+                          }
+                        }
+                      }
+                      ... on ProjectV2ItemFieldSingleSelectValue {
+                        name
+                        field {
+                          ... on ProjectV2FieldCommon {
+                            name
+                          }
+                        }
+                      }
+                    }
+                  }
                   content {
                     ... on DraftIssue {
                       title
@@ -72,7 +101,6 @@ class GithubProject:
                     }
                     ... on Issue {
                       title
-                      number
                       assignees(first: 10) {
                         nodes {
                           login
@@ -81,38 +109,11 @@ class GithubProject:
                     }
                     ... on PullRequest {
                       title
-                      number
                       assignees(first: 10) {
                         nodes {
                           login
                         }
                       }
-                    }
-                  }
-                }
-              }
-              fields(first: 20) {
-                nodes {
-                  ... on ProjectV2Field {
-                    id
-                    name
-                  }
-                  ... on ProjectV2IterationField {
-                    id
-                    name
-                    configuration {
-                      iterations {
-                        startDate
-                        id
-                      }
-                    }
-                  }
-                  ... on ProjectV2SingleSelectField {
-                    id
-                    name
-                    options {
-                      id
-                      name
                     }
                   }
                 }
@@ -134,13 +135,9 @@ class GithubProject:
             exit(1)
 
         items = response_items.json()["data"]["node"]["items"]["nodes"]
-        fields = response_items.json()["data"]["node"]["fields"]["nodes"]
 
         self.save_json_to_file("items.json", items)
-        self.save_json_to_file("fields.json", fields)
-
         self.print_items(items)
-        self.print_fields(fields)
 
         return items
 
@@ -149,26 +146,72 @@ class GithubProject:
         with open(file_path, "w", encoding="utf-8") as file:
             json.dump(data, file, indent=2, ensure_ascii=False)
 
+
+    def save_task_to_file(self, item):
+        template_path = "template/_task.md"
+        with open(template_path, "r", encoding="utf-8") as file:
+            template = file.read()
+
+        content = item["content"]
+        title = content.get("title", "")
+        body = content.get("body", "")
+        url = "-- Nothing --"
+
+        field_values = item["fieldValues"]["nodes"]
+        for field_value in field_values:
+            field_name = field_value["field"]["name"]
+            if field_name == "URL" and "text" in field_value:
+                url = field_value["text"]
+                break
+
+        status = ""
+        for field_value in field_values:
+            field_name = field_value["field"]["name"]
+            if field_name == "Status":
+                if "name" in field_value:
+                    status = field_value["name"]
+                break
+
+        task_content = template.format(Title=title, body=body, Status=status, URL=url)
+
+        task_id = item["id"]
+        file_name = f"task_{task_id}.md"
+        file_path = os.path.join(self.tmp_folder, file_name)
+
+        with open(file_path, "w", encoding="utf-8") as file:
+            file.write(task_content)
+
     def print_items(self, items):
         print("---------------------------")
         print(colored("Items:", "magenta"))
         for item in items:
-            print(colored(f"Item ID: {item['id']}_XXXXXXXXXXXX", "cyan"))
+            print(colored(f"Item ID: {item['id']}", "cyan"))
 
             content = item["content"]
             if "title" in content:
                 print(colored(f"Title: {content['title']}", "green"))
             if "body" in content:
                 print(colored(f"Body: {content['body']}", "green"))
-            if "number" in content:
-                print(colored(f"Number: {content['number']}", "green"))
             
             if "assignees" in content:
                 assignees = [assignee["login"] for assignee in content["assignees"]["nodes"]]
                 print(colored(f"Assignees: {', '.join(assignees)}", "green"))
             
+            field_values = item["fieldValues"]["nodes"]
+            for field_value in field_values:
+                field_name = field_value["field"]["name"]
+                if "text" in field_value:
+                    field_value = field_value["text"]
+                elif "date" in field_value:
+                    field_value = field_value["date"]
+                elif "name" in field_value:
+                    field_value = field_value["name"]
+                print(colored(f"{field_name}: {field_value}", "green"))
+            
+            self.save_task_to_file(item)
+            
             print("---")
-
+        
     def print_fields(self, fields):
         print("---------------------------")
         print(colored("Fields:", "magenta"))
