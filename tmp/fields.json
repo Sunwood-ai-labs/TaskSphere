@@ -1,0 +1,132 @@
+[
+  {
+    "id": "PVTF_lAHOBnsxLs4AhBFdzgZwP1k",
+    "name": "Title"
+  },
+  {
+    "id": "PVTF_lAHOBnsxLs4AhBFdzgZwP1o",
+    "name": "Assignees"
+  },
+  {
+    "id": "PVTSSF_lAHOBnsxLs4AhBFdzgZwP1s",
+    "name": "Status",
+    "options": [
+      {
+        "id": "f75ad846",
+        "name": "Backlog"
+      },
+      {
+        "id": "08afe404",
+        "name": "Ready"
+      },
+      {
+        "id": "47fc9ee4",
+        "name": "In progress"
+      },
+      {
+        "id": "4cc61d42",
+        "name": "In review"
+      },
+      {
+        "id": "98236657",
+        "name": "Done"
+      }
+    ]
+  },
+  {
+    "id": "PVTF_lAHOBnsxLs4AhBFdzgZwP1w",
+    "name": "Labels"
+  },
+  {
+    "id": "PVTF_lAHOBnsxLs4AhBFdzgZwP10",
+    "name": "Linked pull requests"
+  },
+  {
+    "id": "PVTF_lAHOBnsxLs4AhBFdzgZwP14",
+    "name": "Milestone"
+  },
+  {
+    "id": "PVTF_lAHOBnsxLs4AhBFdzgZwP18",
+    "name": "Repository"
+  },
+  {
+    "id": "PVTF_lAHOBnsxLs4AhBFdzgZwP2I",
+    "name": "Reviewers"
+  },
+  {
+    "id": "PVTSSF_lAHOBnsxLs4AhBFdzgZwQCo",
+    "name": "Priority",
+    "options": [
+      {
+        "id": "79628723",
+        "name": "P0"
+      },
+      {
+        "id": "0a877460",
+        "name": "P1"
+      },
+      {
+        "id": "da944a9c",
+        "name": "P2"
+      }
+    ]
+  },
+  {
+    "id": "PVTSSF_lAHOBnsxLs4AhBFdzgZwQCw",
+    "name": "Size",
+    "options": [
+      {
+        "id": "eff732af",
+        "name": "XS"
+      },
+      {
+        "id": "9592a5a3",
+        "name": "S"
+      },
+      {
+        "id": "9728cbdc",
+        "name": "M"
+      },
+      {
+        "id": "c53df028",
+        "name": "L"
+      },
+      {
+        "id": "7b141a16",
+        "name": "XL"
+      }
+    ]
+  },
+  {
+    "id": "PVTF_lAHOBnsxLs4AhBFdzgZwQC0",
+    "name": "Estimate"
+  },
+  {
+    "id": "PVTIF_lAHOBnsxLs4AhBFdzgZwQC4",
+    "name": "Iteration",
+    "configuration": {
+      "iterations": [
+        {
+          "startDate": "2024-05-01",
+          "id": "381c7c80"
+        },
+        {
+          "startDate": "2024-05-15",
+          "id": "54cf5c95"
+        },
+        {
+          "startDate": "2024-05-29",
+          "id": "d2c335bc"
+        }
+      ]
+    }
+  },
+  {
+    "id": "PVTF_lAHOBnsxLs4AhBFdzgZwQC8",
+    "name": "Start date"
+  },
+  {
+    "id": "PVTF_lAHOBnsxLs4AhBFdzgZwQDA",
+    "name": "End date"
+  }
+]
