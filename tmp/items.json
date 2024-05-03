@@ -1,104 +1,374 @@
 [
   {
     "id": "PVTI_lAHOBnsxLs4AhBFdzgOsf8w",
+    "fieldValues": {
+      "nodes": [
+        {
+          "text": "風呂カード",
+          "field": {
+            "name": "Title"
+          }
+        },
+        {
+          "name": "Ready",
+          "field": {
+            "name": "Status"
+          }
+        }
+      ]
+    },
     "content": {
       "title": "風呂カード",
-      "body": ""
+      "body": "- 嫁のお風呂カード\n- 猫をテーマ\n- 画像生成で文字付の表紙にする\n- 裏は猫の国風のイラスト"
     }
   },
   {
     "id": "PVTI_lAHOBnsxLs4AhBFdzgOsglw",
+    "fieldValues": {
+      "nodes": [
+        {
+          "text": "GitAutoMerlin",
+          "field": {
+            "name": "Title"
+          }
+        },
+        {
+          "name": "Backlog",
+          "field": {
+            "name": "Status"
+          }
+        }
+      ]
+    },
     "content": {
-      "title": "gitpython",
-      "body": ""
+      "title": "GitAutoMerlin",
+      "body": "- GitとPythonでLLMで生成したコミットメッセージを自動でコミットする\n- 生成したコミットメッセージを含むLLMの出力から成形する機構が必要"
     }
   },
   {
     "id": "PVTI_lAHOBnsxLs4AhBFdzgOsg2s",
+    "fieldValues": {
+      "nodes": [
+        {
+          "text": "ue5 audio visualizer",
+          "field": {
+            "name": "Title"
+          }
+        },
+        {
+          "name": "Backlog",
+          "field": {
+            "name": "Status"
+          }
+        }
+      ]
+    },
     "content": {
-      "title": "ue5 オーディオ",
-      "body": ""
+      "title": "ue5 audio visualizer",
+      "body": "- Niagaraだとお金がかかる\n- まずはYoutube見ながらで自作する\n- どう音声情報を波形にするかを見つける必要がある"
     }
   },
   {
     "id": "PVTI_lAHOBnsxLs4AhBFdzgOsg0M",
+    "fieldValues": {
+      "nodes": [
+        {
+          "text": "mergekit-evolve による 進化的モデルマージ",
+          "field": {
+            "name": "Title"
+          }
+        },
+        {
+          "name": "Backlog",
+          "field": {
+            "name": "Status"
+          }
+        },
+        {
+          "text": "https://note.com/npaka/n/nb9abed7b1ecf",
+          "field": {
+            "name": "URL"
+          }
+        }
+      ]
+    },
     "content": {
-      "title": "mergekit evo",
-      "body": ""
+      "title": "mergekit-evolve による 進化的モデルマージ",
+      "body": "- mergekit-evolveを使ってみる追実験"
     }
   },
   {
     "id": "PVTI_lAHOBnsxLs4AhBFdzgOsg3o",
+    "fieldValues": {
+      "nodes": [
+        {
+          "text": "Stable Audio 2.0",
+          "field": {
+            "name": "Title"
+          }
+        },
+        {
+          "name": "Backlog",
+          "field": {
+            "name": "Status"
+          }
+        }
+      ]
+    },
     "content": {
-      "title": "stable audio",
-      "body": ""
+      "title": "Stable Audio 2.0",
+      "body": "- Stable Audio 2.0に関する調査\n- 学習コード，APIの調査"
     }
   },
   {
     "id": "PVTI_lAHOBnsxLs4AhBFdzgOsg6M",
+    "fieldValues": {
+      "nodes": [
+        {
+          "text": "rinna/llama-3-youko-8b を触ってみる",
+          "field": {
+            "name": "Title"
+          }
+        },
+        {
+          "name": "Backlog",
+          "field": {
+            "name": "Status"
+          }
+        },
+        {
+          "text": "https://huggingface.co/rinna/llama-3-youko-8b",
+          "field": {
+            "name": "URL"
+          }
+        }
+      ]
+    },
     "content": {
-      "title": "llama3 youko",
-      "body": ""
+      "title": "rinna/llama-3-youko-8b を触ってみる",
+      "body": "- 簡単な推論"
     }
   },
   {
     "id": "PVTI_lAHOBnsxLs4AhBFdzgOsg90",
+    "fieldValues": {
+      "nodes": [
+        {
+          "text": "Phi 3をブラウザで動かしてみる",
+          "field": {
+            "name": "Title"
+          }
+        },
+        {
+          "name": "Backlog",
+          "field": {
+            "name": "Status"
+          }
+        }
+      ]
+    },
     "content": {
-      "title": "phi3 web gpu",
-      "body": ""
+      "title": "Phi 3をブラウザで動かしてみる",
+      "body": "- WebGPU & Rust  で動くらしい\n- デモサイト\n- https://huggingface.co/spaces/FL33TW00D-HF/ratchet-phi"
     }
   },
   {
     "id": "PVTI_lAHOBnsxLs4AhBFdzgOshQU",
+    "fieldValues": {
+      "nodes": [
+        {
+          "text": "OpenAI Assistants API Quickstart",
+          "field": {
+            "name": "Title"
+          }
+        },
+        {
+          "name": "Backlog",
+          "field": {
+            "name": "Status"
+          }
+        },
+        {
+          "text": "https://github.com/openai/openai-assistants-quickstart",
+          "field": {
+            "name": "URL"
+          }
+        }
+      ]
+    },
     "content": {
-      "title": "open ai assistant api",
-      "body": ""
+      "title": "OpenAI Assistants API Quickstart",
+      "body": "- OpenAI Assistants API Quickstartを触ってみる\n- "
     }
   },
   {
     "id": "PVTI_lAHOBnsxLs4AhBFdzgOshGA",
+    "fieldValues": {
+      "nodes": [
+        {
+          "text": "Auris TTSを触ってみる",
+          "field": {
+            "name": "Title"
+          }
+        },
+        {
+          "name": "Backlog",
+          "field": {
+            "name": "Status"
+          }
+        },
+        {
+          "text": "https://github.com/uthree/auris",
+          "field": {
+            "name": "URL"
+          }
+        }
+      ]
+    },
     "content": {
-      "title": "auris",
+      "title": "Auris TTSを触ってみる",
       "body": ""
     }
   },
   {
     "id": "PVTI_lAHOBnsxLs4AhBFdzgOshSE",
+    "fieldValues": {
+      "nodes": [
+        {
+          "text": "Amazon Bedrock",
+          "field": {
+            "name": "Title"
+          }
+        },
+        {
+          "name": "Backlog",
+          "field": {
+            "name": "Status"
+          }
+        },
+        {
+          "text": "https://dev.classmethod.jp/articles/amazon-bedrock-cohere-command-r-rag/",
+          "field": {
+            "name": "URL"
+          }
+        }
+      ]
+    },
     "content": {
-      "title": "bedrock",
-      "body": ""
+      "title": "Amazon Bedrock",
+      "body": "- Amazon Bedrockで新モデル「Cohere Command R/R+」を使ってみる"
     }
   },
   {
     "id": "PVTI_lAHOBnsxLs4AhBFdzgOshA4",
+    "fieldValues": {
+      "nodes": [
+        {
+          "text": "Zoltraak : Celsius",
+          "field": {
+            "name": "Title"
+          }
+        },
+        {
+          "name": "Backlog",
+          "field": {
+            "name": "Status"
+          }
+        }
+      ]
+    },
     "content": {
-      "title": "ゾルトラーク　セルシウス",
-      "body": ""
+      "title": "Zoltraak : Celsius",
+      "body": "- Zoltraak に LiteLLM接続して簡易的なタスクを実装してリリースする"
     }
   },
   {
     "id": "PVTI_lAHOBnsxLs4AhBFdzgOsii0",
+    "fieldValues": {
+      "nodes": [
+        {
+          "text": "langfuseを触ってみる",
+          "field": {
+            "name": "Title"
+          }
+        },
+        {
+          "name": "Backlog",
+          "field": {
+            "name": "Status"
+          }
+        },
+        {
+          "text": "https://github.com/langfuse/langfuse",
+          "field": {
+            "name": "URL"
+          }
+        }
+      ]
+    },
     "content": {
-      "title": "langfuse",
+      "title": "langfuseを触ってみる",
       "body": ""
     }
   },
   {
     "id": "PVTI_lAHOBnsxLs4AhBFdzgOslOE",
+    "fieldValues": {
+      "nodes": [
+        {
+          "text": "CodeGemmaを拡張したデータセットで評価する",
+          "field": {
+            "name": "Title"
+          }
+        },
+        {
+          "name": "Backlog",
+          "field": {
+            "name": "Status"
+          }
+        }
+      ]
+    },
     "content": {
-      "title": "codeGemma 評価",
+      "title": "CodeGemmaを拡張したデータセットで評価する",
       "body": ""
     }
   },
   {
     "id": "PVTI_lAHOBnsxLs4AhBFdzgOsohs",
+    "fieldValues": {
+      "nodes": [
+        {
+          "text": "deep-floydのIFを使って画像生成の文字入れをやってみる",
+          "field": {
+            "name": "Title"
+          }
+        },
+        {
+          "name": "Backlog",
+          "field": {
+            "name": "Status"
+          }
+        }
+      ]
+    },
     "content": {
-      "title": "deepfroid if",
+      "title": "deep-floydのIFを使って画像生成の文字入れをやってみる",
       "body": ""
     }
   },
   {
     "id": "PVTI_lAHOBnsxLs4AhBFdzgOtBmY",
+    "fieldValues": {
+      "nodes": [
+        {
+          "text": "demo1",
+          "field": {
+            "name": "Title"
+          }
+        }
+      ]
+    },
     "content": {
       "title": "demo1",
       "body": "demo1"
@@ -106,6 +376,16 @@
   },
   {
     "id": "PVTI_lAHOBnsxLs4AhBFdzgOtCuY",
+    "fieldValues": {
+      "nodes": [
+        {
+          "text": "demo2",
+          "field": {
+            "name": "Title"
+          }
+        }
+      ]
+    },
     "content": {
       "title": "demo2",
       "body": "demo2"
@@ -113,6 +393,16 @@
   },
   {
     "id": "PVTI_lAHOBnsxLs4AhBFdzgOtDME",
+    "fieldValues": {
+      "nodes": [
+        {
+          "text": "demo4",
+          "field": {
+            "name": "Title"
+          }
+        }
+      ]
+    },
     "content": {
       "title": "demo4",
       "body": "demo3"
