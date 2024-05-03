@@ -44,17 +44,35 @@ class GoogleCalendar:
 
         return self.service.events().insert(calendarId=self.calendar_id, body=event_data).execute()
 
+    def get_upcoming_events(self, max_results=10, time_min=None, time_max=None):
+        if time_min is None:
+            time_min = datetime.utcnow().isoformat() + 'Z'
+        if time_max is None:
+            time_max = (datetime.utcnow() + timedelta(days=7)).isoformat() + 'Z'
+
+        events_result = self.service.events().list(calendarId=self.calendar_id, timeMin=time_min,
+                                                   timeMax=time_max, maxResults=max_results, singleEvents=True,
+                                                   orderBy='startTime').execute()
+        events = events_result.get('items', [])
+        return events
+
     def print_event_details(self, event):
         print(colored('Event details:', 'green'))
         print(colored('Summary: ', 'yellow') + colored(event['summary'], 'cyan'))
-        print(colored('Location: ', 'yellow') + colored(event['location'], 'cyan'))
-        print(colored('Description: ', 'yellow') + colored(event['description'], 'cyan'))
+        print(colored('Location: ', 'yellow') + colored(event.get('location', ''), 'cyan'))
+        print(colored('Description: ', 'yellow') + colored(event.get('description', ''), 'cyan'))
         print(colored('Start: ', 'yellow') + colored(event['start']['dateTime'], 'cyan'))
         print(colored('End: ', 'yellow') + colored(event['end']['dateTime'], 'cyan'))
         print(colored('Event URL: ', 'yellow') + colored(event['htmlLink'], 'cyan'))
 
-if __name__ == '__main__':
+    def print_upcoming_events(self, events):
+        if not events:
+            print('No upcoming events found.')
+        for event in events:
+            self.print_event_details(event)
+            print()
 
+if __name__ == '__main__':
     script_name = os.path.basename(__file__)
     tprint(script_name)
 
@@ -71,5 +89,9 @@ if __name__ == '__main__':
     location = "TEST-AAAA"
     description = "TEST---01-text"
 
-    created_event = google_calendar.create_event(start_time, duration, summary, location, description)
-    google_calendar.print_event_details(created_event)
+    # created_event = google_calendar.create_event(start_time, duration, summary, location, description)
+    # google_calendar.print_event_details(created_event)
+
+    print(colored('Upcoming events:', 'green'))
+    upcoming_events = google_calendar.get_upcoming_events()
+    google_calendar.print_upcoming_events(upcoming_events)
