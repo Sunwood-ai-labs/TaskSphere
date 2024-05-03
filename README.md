@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://media.githubusercontent.com/media/Sunwood-ai-labs/TaskSphere/main/docs/TaskSphere_icon.jpeg" width="100%">
+<img src="https://media.githubusercontent.com/media/Sunwood-ai-labs/TaskSphere/main/docs/TaskSphAIre_icon.jpeg" width="100%">
 <br>
 <h1 align="center">TaskSphAIre</h1>
 <h2 align="center">
@@ -32,31 +32,29 @@
   - [前提条件](#前提条件)
   - [手順](#手順)
 - [使い方](#使い方)
-  - [メイン機能の実行](#メイン機能の実行)
-  - [サンプルコード](#サンプルコード)
-- [コントリビューション](#コントリビューション)
+- [サンプルコード](#サンプルコード)
 - [ライセンス](#ライセンス)
 - [お問い合わせ](#お問い合わせ)
 
+
+
 ## 概要
 
-TaskSphAIreは、GitHub ProjectsとGoogleカレンダーをシームレスに統合する革新的なプロジェクト管理ツールです。効率的なタスク管理とスケジューリングのための中央集中型プラットフォームを提供することで、チームがタスクの計画、組織化、実行する方法を革新することを目指しています。
-
-TaskSphAIreを使用すると、GitHub ProjectsをGoogleカレンダーと簡単に同期できるため、会議やイベントと並行してタスクを可視化および管理できます。プロジェクトのタイムラインを把握し、チームメンバーにタスクを割り当て、二度と締め切りを逃すことはありません！
+TaskSphAIreは、GitHub ProjectsからタスクをAIモデルで分解し、Googleカレンダーにスケジュールを自動的に同期するアプリケーションです。プロジェクト管理とタスクのスケジューリングを効率化し、生産性の向上を目指します。
 
 ## 特徴
 
-- [x] GitHub ProjectsとGoogleカレンダーのシームレスな同期
-- [x] プロジェクトのタイムラインと締め切りを可視化するための直感的なカレンダービュー
-- [ ] コラボレーティブなタスクの割り当てと追跡
-- [ ] 今後のタスクとイベントの自動リマインダーと通知
-- [ ] 洞察に満ちたプロジェクト分析と進捗状況の追跡
+- GitHub ProjectsからタスクをAIモデルで分解
+- 分解したタスクをGoogleカレンダーにスケジュールとして自動同期
+- 直感的なカレンダービューでプロジェクトのタイムラインを可視化
+- Docker環境でアプリケーションを実行可能
+
 
 ## インストール方法
 
 ### 前提条件
 
-- Python 3.6以降がインストールされていること
+- Docker、docker-composeがインストール済みであること
 - GitHubアカウントとパーソナルアクセストークンを持っていること
 - Googleアカウントとサービスアカウントの認証情報を持っていること
 
@@ -67,55 +65,64 @@ TaskSphAIreを使用すると、GitHub ProjectsをGoogleカレンダーと簡単
    git clone https://github.com/Sunwood-ai-labs/TaskSphere.git
    ```
 
-2. 必要な依存関係をインストールします：
+2. プロジェクトのディレクトリに移動します：
    ```
    cd TaskSphere
-   pip install -r requirements.txt
    ```
 
-3. 必要な環境変数を設定します：
-   - `GITHUB_PERSONAL_ACCESS_TOKEN`：GitHubのパーソナルアクセストークン
-   - `GITHUB_USER_LOGIN`：GitHubのユーザー名
-   - `GITHUB_PROJECT_NUMBER`：同期するGitHubプロジェクトの番号
-   - `GOOGLE_APPLICATION_CREDENTIALS`：Googleサービスアカウントの認証情報ファイルへのパス
-   - `CALENDAR_ID`：同期するGoogleカレンダーのID
+3. 環境変数ファイル `.env` を作成し、以下の変数を設定します：
+   ```
+   GITHUB_PERSONAL_ACCESS_TOKEN=<GitHubのパーソナルアクセストークン>
+   GITHUB_USER_LOGIN=<GitHubのユーザー名>
+   GITHUB_PROJECT_NUMBER=<同期するGitHubプロジェクトの番号>
+   GOOGLE_APPLICATION_CREDENTIALS=key.json
+   CALENDAR_ID=<同期するGoogleカレンダーのID>
+   ```
+
+4. Googleサービスアカウントの認証情報ファイル `key.json` をプロジェクトのルートディレクトリに配置します。
+
+5. Dockerイメージをビルドし、コンテナを起動します：
+   ```
+   docker-compose up -d
+   ```
+
+6. アプリケーションのコンテナに入ります：
+   ```
+   docker-compose exec app bash
+   ```
+
+これで、TaskSphAIreの環境が整いました。
 
 ## 使い方
 
-### メイン機能の実行
+1. コンテナ内で以下のコマンドを実行し、TaskSphAIreを起動します：
+   ```
+   python modules/TaskSphAIre.py
+   ```
 
-TaskSphAIreの主要機能を実行するには、以下のコマンドを実行します：
+   これにより、GitHub ProjectsからタスクをAIモデルで分解し、Googleカレンダーにスケジュールが自動的に同期されます。
 
-```
-python modules/GithubToGoogleCalendar.py
-```
+2. 同期が完了したら、Googleカレンダーを開いて、スケジュールされたタスクを確認します。
 
-このコマンドを実行すると、GitHub ProjectsからタスクをフェッチしてGoogleカレンダーにイベントとして同期します。環境変数が適切に設定されていることを確認してください。
-
-### サンプルコード
+## サンプルコード
 
 `example`ディレクトリには、TaskSphAIreの機能を示すサンプルコードが含まれています：
 
-- `01_github_project_info.py`：GitHubプロジェクトの情報を取得する方法を示すサンプルコード
-- `02_get_github_project_field_ids.py`：GitHubプロジェクトのフィールドIDを取得する方法を示すサンプルコード
-- `03_github_project_items.py`：GitHubプロジェクトのアイテムを取得する方法を示すサンプルコード
-- `04_github_project_manager.py`：GitHubプロジェクトを管理する方法を示すサンプルコード
-- `05_github_project_tool.py`：GitHubプロジェクトを操作するツールを示すサンプルコード
-- `06_calendar_event_scheduler.py`：Googleカレンダーにイベントをスケジュールする方法を示すサンプルコード
+- `01_github_project_info.py`：GitHubプロジェクトの情報を取得するサンプルコード。環境変数からアクセストークン、ユーザーログイン、プロジェクト番号を取得し、GraphQLクエリを使用してプロジェクトのタイトルとIDを取得します。
 
-これらのサンプルを参考にして、TaskSphAIreの使い方を学ぶことができます。
+- `02_get_github_project_field_ids.py`：GitHubプロジェクトのフィールドIDを取得するサンプルコード。プロジェクト情報とフィールド情報を取得するためのGraphQLクエリを使用し、フィールドの名前、ID、オプション、反復情報を表示します。
 
-## コントリビューション
+- `03_github_project_items.py`：GitHubプロジェクトのアイテムを取得するサンプルコード。プロジェクト情報とアイテム情報を取得するためのGraphQLクエリを使用し、アイテムのID、フィールド値、コンテンツ情報（タイトル、本文、担当者）を表示します。
 
-コミュニティからのコントリビューションを歓迎します！TaskSphAIreに貢献したい場合は、以下の手順に従ってください：
+- `04_github_project_manager.py`：GitHubプロジェクトを管理するサンプルコード。プロジェクト情報とアイテム情報を取得し、アイテムをプロジェクトに追加する機能（既存の課題やプルリクエストの追加、新しいドラフト課題の追加）を提供します。
 
-1. リポジトリをフォークします
-2. 新機能またはバグ修正用の新しいブランチを作成します
-3. 変更を加え、説明的なメッセージでコミットします
-4. 変更をフォークしたリポジトリにプッシュします
-5. メインのTaskSphAIreリポジトリにプルリクエストを送信します
+- `05_github_project_tool.py`：GitHubプロジェクトを操作するサンプルコード。プロジェクト情報、アイテム情報、フィールド情報を取得し、アイテムのフィールド値を更新する機能を提供します。
 
-コードがプロジェクトのコーディング規則に準拠し、適切なテストが含まれていることを確認してください。
+- `06_calendar_event_scheduler.py`：Googleカレンダーにイベントをスケジュールするサンプルコード。サービスアカウントの認証情報を使用してGoogleカレンダーAPIに接続し、イベントを作成して詳細を表示します。
+
+- `07_fancy_litellm.py`：LLMを使用してレスポンスを生成するサンプルコード。異なるモデル（groq/llama3-70b-8192, groq/gemma-7b-it, anthropic/claude-3-haiku-20240307）を使用してプロンプトに対するレスポンスを生成し、結果を表示します。
+
+これらのサンプルコードを参考にして、TaskSphAIreの機能を理解し、カスタマイズすることができます。
 
 ## ライセンス
 

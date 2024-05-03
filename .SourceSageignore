@@ -26,4 +26,3 @@ build
 .env
 key.json
 tmp
-example
