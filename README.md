@@ -1,5 +1,5 @@
 <p align="center">
-<img src="" width="100%">
+<img src="https://media.githubusercontent.com/media/Sunwood-ai-labs/TaskSphere/main/docs/TaskSphere_icon.jpeg" width="100%">
 <br>
 <h1 align="center">TaskSphere</h1>
 <h2 align="center">
@@ -46,12 +46,11 @@ TaskSphereを使用すると、GitHub ProjectsをGoogleカレンダーと簡単�
 
 ## 特徴
 
-- GitHub ProjectsとGoogleカレンダーのシームレスな同期
-- プロジェクトのタイムラインと締め切りを可視化するための直感的なカレンダービュー
-- コラボレーティブなタスクの割り当てと追跡
-- 今後のタスクとイベントの自動リマインダーと通知
-- 洞察に満ちたプロジェクト分析と進捗状況の追跡
-- 安全な認証とデータ保護
+- [x] GitHub ProjectsとGoogleカレンダーのシームレスな同期
+- [x] プロジェクトのタイムラインと締め切りを可視化するための直感的なカレンダービュー
+- [ ] コラボレーティブなタスクの割り当てと追跡
+- [ ] 今後のタスクとイベントの自動リマインダーと通知
+- [ ] 洞察に満ちたプロジェクト分析と進捗状況の追跡
 
 ## インストール方法
 
