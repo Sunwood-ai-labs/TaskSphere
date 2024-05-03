@@ -58,6 +58,10 @@
 
 TaskSphAIreは、GitHub ProjectsからタスクをAIモデルで分解し、Googleカレンダーにスケジュールを自動的に同期するアプリケーションです。プロジェクト管理とタスクのスケジューリングを効率化し、生産性の向上を目指します。
 
+[![alt設定](http://img.youtube.com/vi/ml4GKgiXqR4/0.jpg)](https://www.youtube.com/watch?v=ml4GKgiXqR4)
+
+<iframe width="660" height="315" src="https://www.youtube.com/embed/ml4GKgiXqR4?si=nh8RO9z_ZPI4Y1lz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ## 特徴
 
 - GitHub ProjectsからタスクをAIモデルで分解
