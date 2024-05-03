@@ -1,7 +1,7 @@
 <p align="center">
 <img src="https://media.githubusercontent.com/media/Sunwood-ai-labs/TaskSphere/main/docs/TaskSphere_icon.jpeg" width="100%">
 <br>
-<h1 align="center">TaskSphere</h1>
+<h1 align="center">TaskSphAIre</h1>
 <h2 align="center">
   ～Your Tasks, In Sync, In Sphere～
 
@@ -40,9 +40,9 @@
 
 ## 概要
 
-TaskSphereは、GitHub ProjectsとGoogleカレンダーをシームレスに統合する革新的なプロジェクト管理ツールです。効率的なタスク管理とスケジューリングのための中央集中型プラットフォームを提供することで、チームがタスクの計画、組織化、実行する方法を革新することを目指しています。
+TaskSphAIreは、GitHub ProjectsとGoogleカレンダーをシームレスに統合する革新的なプロジェクト管理ツールです。効率的なタスク管理とスケジューリングのための中央集中型プラットフォームを提供することで、チームがタスクの計画、組織化、実行する方法を革新することを目指しています。
 
-TaskSphereを使用すると、GitHub ProjectsをGoogleカレンダーと簡単に同期できるため、会議やイベントと並行してタスクを可視化および管理できます。プロジェクトのタイムラインを把握し、チームメンバーにタスクを割り当て、二度と締め切りを逃すことはありません！
+TaskSphAIreを使用すると、GitHub ProjectsをGoogleカレンダーと簡単に同期できるため、会議やイベントと並行してタスクを可視化および管理できます。プロジェクトのタイムラインを把握し、チームメンバーにタスクを割り当て、二度と締め切りを逃すことはありません！
 
 ## 特徴
 
@@ -84,7 +84,7 @@ TaskSphereを使用すると、GitHub ProjectsをGoogleカレンダーと簡単�
 
 ### メイン機能の実行
 
-TaskSphereの主要機能を実行するには、以下のコマンドを実行します：
+TaskSphAIreの主要機能を実行するには、以下のコマンドを実行します：
 
 ```
 python modules/GithubToGoogleCalendar.py
@@ -94,7 +94,7 @@ python modules/GithubToGoogleCalendar.py
 
 ### サンプルコード
 
-`example`ディレクトリには、TaskSphereの機能を示すサンプルコードが含まれています：
+`example`ディレクトリには、TaskSphAIreの機能を示すサンプルコードが含まれています：
 
 - `01_github_project_info.py`：GitHubプロジェクトの情報を取得する方法を示すサンプルコード
 - `02_get_github_project_field_ids.py`：GitHubプロジェクトのフィールドIDを取得する方法を示すサンプルコード
@@ -103,26 +103,26 @@ python modules/GithubToGoogleCalendar.py
 - `05_github_project_tool.py`：GitHubプロジェクトを操作するツールを示すサンプルコード
 - `06_calendar_event_scheduler.py`：Googleカレンダーにイベントをスケジュールする方法を示すサンプルコード
 
-これらのサンプルを参考にして、TaskSphereの使い方を学ぶことができます。
+これらのサンプルを参考にして、TaskSphAIreの使い方を学ぶことができます。
 
 ## コントリビューション
 
-コミュニティからのコントリビューションを歓迎します！TaskSphereに貢献したい場合は、以下の手順に従ってください：
+コミュニティからのコントリビューションを歓迎します！TaskSphAIreに貢献したい場合は、以下の手順に従ってください：
 
 1. リポジトリをフォークします
 2. 新機能またはバグ修正用の新しいブランチを作成します
 3. 変更を加え、説明的なメッセージでコミットします
 4. 変更をフォークしたリポジトリにプッシュします
-5. メインのTaskSphereリポジトリにプルリクエストを送信します
+5. メインのTaskSphAIreリポジトリにプルリクエストを送信します
 
 コードがプロジェクトのコーディング規則に準拠し、適切なテストが含まれていることを確認してください。
 
 ## ライセンス
 
-TaskSphereは[MITライセンス](https://github.com/Sunwood-ai-labs/TaskSphere/blob/main/LICENSE)の下でリリースされています。
+TaskSphAIreは[MITライセンス](https://github.com/Sunwood-ai-labs/TaskSphere/blob/main/LICENSE)の下でリリースされています。
 
 ## お問い合わせ
 
 ご質問、ご提案、フィードバックがある場合は、お気軽に[contact@sunwood-ai-labs.com](mailto:contact@sunwood-ai-labs.com)までお問い合わせください。
 
-TaskSphereを使用して、プロジェクト管理をより効率的で生産的なものにしましょう！
+TaskSphAIreを使用して、プロジェクト管理をより効率的で生産的なものにしましょう！
