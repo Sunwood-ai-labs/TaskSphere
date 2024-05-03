@@ -44,7 +44,7 @@ class GoogleCalendar:
 
         return self.service.events().insert(calendarId=self.calendar_id, body=event_data).execute()
 
-    def get_upcoming_events(self, max_results=10, time_min=None, time_max=None):
+    def get_upcoming_events(self, max_results=100, time_min=None, time_max=None):
         if time_min is None:
             time_min = datetime.utcnow().isoformat() + 'Z'
         if time_max is None:
@@ -72,13 +72,21 @@ class GoogleCalendar:
             self.print_event_details(event)
             print()
 
-    def find_available_time_slot(self, start_time, duration):
+    def find_available_time_slot(self, start_time, duration, summary):
         time_min = start_time.astimezone(ZoneInfo("UTC")).isoformat()
-        time_max = (start_time + timedelta(days=1)).astimezone(ZoneInfo("UTC")).isoformat()
+        time_max = (start_time + timedelta(days=3)).astimezone(ZoneInfo("UTC")).isoformat()
         print(colored(f'time_min:{time_min} ', 'yellow'))
         print(colored(f'time_max:{time_max} ', 'yellow'))
         events = self.get_upcoming_events(time_min=time_min, time_max=time_max)
 
+        # summaryの名前が重複する予定がある場合は、Noneを返す
+        for event in events:
+            print(event['summary'])
+            print(summary)
+            print("------------------------")
+            if event['summary'] == summary:
+                return None
+        
         if not events:
             return start_time
 
@@ -94,7 +102,7 @@ class GoogleCalendar:
                 latest_end_time = event_end_time
 
         # イベント間の間隔を10分に設定
-        buffer_time = timedelta(minutes=0)
+        buffer_time = timedelta(minutes=10)
         latest_end_time += buffer_time
 
         return latest_end_time.astimezone(ZoneInfo("Asia/Tokyo"))
@@ -123,7 +131,7 @@ if __name__ == '__main__':
     upcoming_events = google_calendar.get_upcoming_events(time_min=time_min)
     google_calendar.print_upcoming_events(upcoming_events)
 
-    start_time_str = "2024-05-03 00:00"
+    start_time_str = "2024-05-04 00:00"
     start_time = datetime.strptime(start_time_str, "%Y-%m-%d %H:%M").replace(tzinfo=jst)
     duration = 60
     summary = "TEST01"
