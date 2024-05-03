@@ -13,7 +13,7 @@ class GithubProject:
             "Authorization": f"Bearer {self.token}",
             "Content-Type": "application/json"
         }
-        self.tmp_folder = "tmp"
+        self.tmp_folder = "tmp/task"
         self.create_tmp_folder()
 
     def create_tmp_folder(self):
@@ -159,6 +159,8 @@ class GithubProject:
 
         field_values = item["fieldValues"]["nodes"]
         for field_value in field_values:
+            if not field_value:  # field_valueが空の辞書の場合はスキップ
+                continue   
             field_name = field_value["field"]["name"]
             if field_name == "URL" and "text" in field_value:
                 url = field_value["text"]
@@ -166,6 +168,8 @@ class GithubProject:
 
         status = ""
         for field_value in field_values:
+            if not field_value:  # field_valueが空の辞書の場合はスキップ
+                continue   
             field_name = field_value["field"]["name"]
             if field_name == "Status":
                 if "name" in field_value:
@@ -198,7 +202,10 @@ class GithubProject:
                 print(colored(f"Assignees: {', '.join(assignees)}", "green"))
             
             field_values = item["fieldValues"]["nodes"]
+
             for field_value in field_values:
+                if not field_value:  # field_valueが空の辞書の場合はスキップ
+                    continue   
                 field_name = field_value["field"]["name"]
                 if "text" in field_value:
                     field_value = field_value["text"]
@@ -207,7 +214,7 @@ class GithubProject:
                 elif "name" in field_value:
                     field_value = field_value["name"]
                 print(colored(f"{field_name}: {field_value}", "green"))
-            
+
             self.save_task_to_file(item)
             
             print("---")

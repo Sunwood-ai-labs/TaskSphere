@@ -27,7 +27,7 @@ class GithubToGoogleCalendar:
 
         start_time = datetime.now().replace(second=0, microsecond=0) + timedelta(hours=1)
         duration = 120  # 2 hours
-        interval = 60  # 1 hour
+        interval = 30  # 1 hour
 
         for item in items:
             summary = item['content']['title']

@@ -1,82 +1,85 @@
 import os
 import glob
-import re
-import json
-from termcolor import colored
+from litellm import completion
 from art import *
+from termcolor import colored
 
-class TaskMarkdownToJson:
-    def __init__(self, input_dir="tmp/responses", output_dir="tmp/converted_tasks", input_pattern="response_*.md", output_prefix="response_", output_extension=".json"):
-        self.input_dir = input_dir
-        self.output_dir = output_dir
-        self.input_pattern = input_pattern
-        self.output_prefix = output_prefix
-        self.output_extension = output_extension
+class TaskBreakdown:
+    def __init__(self, tmp_folder, template_path="template/_prompt_task2subtask.md", model_name="groq/llama3-70b-8192", max_tokens=None, temperature=None, api_base=None):
+        self.tmp_folder = tmp_folder
+        self.save_folder = "tmp"
+        self.template_path = template_path
+        self.prompt_folder = os.path.join(self.save_folder, "prompts")
+        self.response_folder = os.path.join(self.save_folder, "responses")
+        self.model_name = model_name
+        self.max_tokens = max_tokens
+        self.temperature = temperature
+        self.api_base = api_base
+        self.create_folders()
+        self.load_template()
 
-    def parse_markdown(self, markdown_text):
-        tasks = []
-        current_task = None
+    def create_folders(self):
+        os.makedirs(self.prompt_folder, exist_ok=True)
+        os.makedirs(self.response_folder, exist_ok=True)
 
-        for line in markdown_text.split("\n"):
-            if line.startswith("###"):
-                if current_task:
-                    tasks.append(current_task)
-                title_match = re.match(r"###\s*(.*?)(?:\s*\((\d+)分\))?$", line)
-                if title_match:
-                    current_task = {
-                        "title": title_match.group(1),
-                        "duration": int(title_match.group(2)) if title_match.group(2) else 0,
-                        "subtasks": []
-                    }
-            elif line.startswith("  -"):
-                if current_task:
-                    current_task["subtasks"].append(line[3:].strip())
+    def load_template(self):
+        with open(self.template_path, "r", encoding="utf-8") as file:
+            self.template = file.read()
 
-        if current_task:
-            tasks.append(current_task)
+    def get_task_files(self, task_limit=3):
+        task_files = glob.glob(os.path.join(self.tmp_folder, "task_*.md"))[:task_limit]
+        return task_files
 
-        return tasks
+    def read_task_file(self, file_path):
+        with open(file_path, "r", encoding="utf-8") as file:
+            task_content = file.read()
+        return task_content
 
-    def process_markdown_files(self):
-        # 出力ディレクトリが存在しない場合は作成する
-        os.makedirs(self.output_dir, exist_ok=True)
+    def save_prompt(self, task_id, prompt):
+        prompt_file = os.path.join(self.prompt_folder, f"prompt_{task_id}.md")
+        with open(prompt_file, "w", encoding="utf-8") as file:
+            file.write(prompt)
 
-        # 入力ディレクトリから指定されたパターンのファイルを取得し、数値順にソート
-        markdown_files = sorted(glob.glob(os.path.join(self.input_dir, self.input_pattern)), key=lambda x: x.split("_")[-1].split(".")[0])
-        print(colored(f"処理対象のマークダウンファイル: {markdown_files}", "magenta"))
+    def save_response(self, task_id, response):
+        response_file = os.path.join(self.response_folder, f"response_{task_id}.md")
+        with open(response_file, "w", encoding="utf-8") as file:
+            file.write(response)
 
-        # 各マークダウンファイルを順番に処理
-        for markdown_file in markdown_files:
-            with open(markdown_file, "r") as infile:
-                # マークダウンファイルの内容を読み込む
-                markdown_text = infile.read()
-                print(colored(f"読み込んだマークダウンファイルの内容:\n{markdown_text}", "yellow"))
+    def generate_response(self, prompt):
+        print(colored(f"Model: {self.model_name}", "cyan"))
+        print(colored(f"Prompt: {prompt}", "yellow"))
+        response = completion(
+            model=self.model_name,
+            messages=[{"content": prompt, "role": "user"}],
+            max_tokens=self.max_tokens,
+            temperature=self.temperature,
+            api_base=self.api_base
+        )
+        return response['choices'][0].message.content.strip()
 
-                # マークダウンをパースしてタスクのリストを取得
-                tasks = self.parse_markdown(markdown_text)
-                print(colored(f"パース後のタスクリスト: {tasks}", "blue"))
-
-                # タスクをJSONに変換
-                json_output = json.dumps(tasks, ensure_ascii=False, indent=2)
-                print(colored(f"JSON出力: {json_output}", "green"))
-
-                # 出力ファイル名を生成
-                output_file = os.path.join(self.output_dir, self.output_prefix + os.path.splitext(os.path.basename(markdown_file))[0].split("response_")[-1] + self.output_extension)
-                print(colored(f"出力ファイル名: {output_file}", "magenta"))
-
-                # JSONを出力ファイルに書き込む
-                with open(output_file, "w") as outfile:
-                    outfile.write(json_output)
-
-                print(colored(f"タスクが {output_file} に保存されました。", "green"))
-
-
+    def process_tasks(self, task_limit=3):
+        task_files = self.get_task_files(task_limit)
+        for task_file in task_files:
+            print(colored(f"Processing task file: {task_file}", "magenta"))
+            task_content = self.read_task_file(task_file)
+            task_id = os.path.splitext(os.path.basename(task_file))[0].split("task_")[1]
+            prompt = self.template.format(TASK=task_content)
+            self.save_prompt(task_id, prompt)
+            response = self.generate_response(prompt)
+            self.save_response(task_id, response)
+            print(colored(response, "green"))
+            print("-------------------")
+            
 if __name__ == "__main__":
-    # 使用例
     script_name = os.path.basename(__file__)
     tprint(script_name)
 
-    converter = TaskMarkdownToJson()
-    print(colored("マークダウンファイルの変換を開始します...", "cyan"))
-    converter.process_markdown_files()
-    print(colored("変換が完了しました。", "cyan"))
+    task_breakdown = TaskBreakdown(
+        tmp_folder="tmp/task",
+        template_path="template/_prompt_task2subtask.md",
+        model_name="anthropic/claude-3-haiku-20240307",
+        max_tokens=None,
+        temperature=None,
+        api_base=None
+    )
+    task_breakdown.process_tasks(task_limit=3)
